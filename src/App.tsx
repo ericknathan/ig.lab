@@ -1,4 +1,4 @@
-import { Router } from './components/Router';
+import { Router } from './pages/Router';
 
 import { ApolloProvider } from '@apollo/client';
 import { client } from './lib/apollo';
