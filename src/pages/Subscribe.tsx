@@ -4,6 +4,7 @@ import { Button } from '../components/Button';
 import { Input } from '../components/Input';
 import { Logo } from '../components/Logo';
 import { useCreateSubscriberMutation, useGetFirstLessonQuery } from '../graphql/generated';
+import codeMockupImageUrl from '../assets/code-mockup.png'
 
 export function Subscribe() {
   const navigate = useNavigate();
@@ -68,7 +69,7 @@ export function Subscribe() {
         </div>
       </div>
       <img
-        src='/src/assets/code-mockup.png'
+        src={codeMockupImageUrl}
         className='mt-10'
         alt='Mockup de código'
       />
