@@ -1,31 +1,9 @@
-import { gql, useMutation, useQuery } from '@apollo/client';
 import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
 import { Logo } from '../components/Logo';
-
-const CREATE_SUBSCRIBER_MUTATION = gql`
-  mutation CreateSubscriber($name: String!, $email: String!) {
-    createSubscriber(data: { name: $name, email: $email }) {
-      id
-    }
-  }
-`;
-
-const GET_FIRST_LESSON_QUERY = gql`
-  query {
-    lessons(orderBy: availableAt_ASC, stage: PUBLISHED, first: 1) {
-      slug
-    }
-  }
-`;
-
-interface GetFirstLessonQueryResponse {
-  lessons: {
-    slug: string;
-  }[];
-}
+import { useCreateSubscriberMutation, useGetFirstLessonQuery } from '../graphql/generated';
 
 export function Subscribe() {
   const navigate = useNavigate();
@@ -33,10 +11,8 @@ export function Subscribe() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
-  const [createSubscriber, { loading }] = useMutation(CREATE_SUBSCRIBER_MUTATION);
-  const { data } = useQuery<GetFirstLessonQueryResponse>(
-    GET_FIRST_LESSON_QUERY
-  );
+  const [createSubscriber, { loading }] = useCreateSubscriberMutation();
+  const { data } = useGetFirstLessonQuery();
 
   async function handleSubscribe(event: FormEvent) {
     event.preventDefault();
