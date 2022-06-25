@@ -102,7 +102,7 @@ export function VideoSection({ lessonSlug }: VideoProps) {
           />
         </div>
 
-        <Footer />
+        <Footer width="compact" />
       </div>
     </div>
   );
